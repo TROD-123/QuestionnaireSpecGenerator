@@ -1,0 +1,601 @@
+{
+  "Title": "Test Questionnaire",
+  "Desc": "This is a test",
+  "Client": "Test client",
+  "Team": null,
+  "OwningOffice": "LA",
+  "Country": "US",
+  "SSets": [],
+  "QSets": [],
+  "RSets": [],
+  "Children": [
+    {
+      "MNum": 1,
+      "MTitle": "Demographics",
+      "MDesc": "The demographics section",
+      "MShowDesc": false,
+      "Children": [
+        {
+          "SLetter": "A",
+          "STitle": "A great deal on Age",
+          "SDesc": "So much can be learned about one's age.",
+          "SShowDesc": true,
+          "Children": [
+            {
+              "QNum": "A10",
+              "QTitle": "Age",
+              "BaseLabel": "All respondents",
+              "BaseDef": "",
+              "Comments": "",
+              "ProgInst": "Numeric OE. Do not randomize columns. Keep order from Q10. Show 1 text box. Only accept values between 1 and 99. Code OEs. Appendage test.",
+              "ProgFlagsNonADC": [
+                "ShowNumBoxes",
+                "NoRandomizeColumns",
+                "AcceptBtwnXandY",
+                "CodeOE",
+                "Custom",
+                "KeepOrderFromQX"
+              ],
+              "ProgFlagADC": "None",
+              "RFlag": "NextQuestion",
+              "RInst": "Next question",
+              "QTypeInt": "NumericTextField",
+              "QType": "Numeric OE.",
+              "QText": "What is your age?",
+              "RespInst": "Type your answer in the box below.",
+              "Children": [
+                {
+                  "RCode": -1,
+                  "RText": "[INSERT TEXT BOX]",
+                  "RFlags": [
+                    "OpenEnd"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 1,
+                  "DateCreated": "2017-07-20T00:20:43.4239649-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                }
+              ],
+              "SelfId": 1,
+              "ParentId": 1,
+              "DateCreated": "2017-07-20T00:20:43.4054149-07:00",
+              "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+            },
+            {
+              "QNum": "A20",
+              "QTitle": "Age 2",
+              "BaseLabel": "All respondents",
+              "BaseDef": "",
+              "Comments": "",
+              "ProgInst": "Grid. Randomize rows. Show column codes.",
+              "ProgFlagsNonADC": [
+                "RandomizeRows",
+                "ShowColumnCodes"
+              ],
+              "ProgFlagADC": "None",
+              "RFlag": "NextQuestion",
+              "RInst": "Next question",
+              "QTypeInt": "Grid",
+              "QType": "Grid.",
+              "QText": "This is a test grid question.",
+              "RespInst": "Please select an answer for each statement.",
+              "Children": [
+                {
+                  "RCode": 4096,
+                  "RText": "",
+                  "RFlags": [
+                    "ColumnResponse"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 1,
+                  "RText": "Hate it. [ANCHOR LEFT]",
+                  "RFlags": [
+                    "AnchorLeft"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 5,
+                  "RText": "Meh [ANCHOR IN CENTER]",
+                  "RFlags": [
+                    "AnchorCenter"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 10,
+                  "RText": "Love it. [ANCHOR RIGHT]",
+                  "RFlags": [
+                    "AnchorRight"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 4095,
+                  "RText": "",
+                  "RFlags": [
+                    "RowResponse"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 1,
+                  "RText": "The Beatles",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 2,
+                  "RText": "Coldplay",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 3,
+                  "RText": "Linkin Park",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                },
+                {
+                  "RCode": 4,
+                  "RText": "My Ass",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 2,
+                  "DateCreated": "2017-07-20T00:20:43.4279753-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4279753-07:00"
+                }
+              ],
+              "SelfId": 2,
+              "ParentId": 1,
+              "DateCreated": "2017-07-20T00:20:43.4164453-07:00",
+              "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+            },
+            {
+              "QNum": "A30",
+              "QTitle": "Age 3",
+              "BaseLabel": "All respondents",
+              "BaseDef": "",
+              "Comments": "",
+              "ProgInst": "Single code. Radio buttons. Do not randomize rows. Hide row codes. Single code per row statement.",
+              "ProgFlagsNonADC": [
+                "NoRandomizeRows",
+                "HideRowCodes",
+                "SingleCodePerRow"
+              ],
+              "ProgFlagADC": "None",
+              "RFlag": "NextQuestion",
+              "RInst": "Next question",
+              "QTypeInt": "SingleCode",
+              "QType": "Single code. Radio buttons.",
+              "QText": "I don't get what you said. Which of the below applies to you?",
+              "RespInst": "Please select one.",
+              "Children": [
+                {
+                  "RCode": 1,
+                  "RText": "16-24",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4284767-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+                },
+                {
+                  "RCode": 2,
+                  "RText": "25-34",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4284767-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+                },
+                {
+                  "RCode": 3,
+                  "RText": "35-44",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4284767-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+                },
+                {
+                  "RCode": 4,
+                  "RText": "45-54",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4284767-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+                },
+                {
+                  "RCode": 5,
+                  "RText": "55-64",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4284767-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+                },
+                {
+                  "RCode": 6,
+                  "RText": "65+",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4284767-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4284767-07:00"
+                },
+                {
+                  "RCode": 97,
+                  "RText": "Prefer not to answer",
+                  "RFlags": [
+                    "PrefNoAnswer"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 3,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                }
+              ],
+              "SelfId": 3,
+              "ParentId": 1,
+              "DateCreated": "2017-07-20T00:20:43.4164453-07:00",
+              "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+            }
+          ],
+          "SelfId": 1,
+          "ParentId": 1,
+          "DateCreated": "2017-07-20T00:20:43.403911-07:00",
+          "DateModified": "2017-07-20T00:20:43.4174471-07:00"
+        },
+        {
+          "SLetter": "B",
+          "STitle": "A great deal on Gender",
+          "SDesc": "",
+          "SShowDesc": false,
+          "Children": [],
+          "SelfId": 2,
+          "ParentId": 1,
+          "DateCreated": "2017-07-20T00:20:43.403911-07:00",
+          "DateModified": "2017-07-20T00:20:43.403911-07:00"
+        },
+        {
+          "SLetter": "C",
+          "STitle": "A great deal on Employement status",
+          "SDesc": "",
+          "SShowDesc": false,
+          "Children": [],
+          "SelfId": 3,
+          "ParentId": 1,
+          "DateCreated": "2017-07-20T00:20:43.403911-07:00",
+          "DateModified": "2017-07-20T00:20:43.403911-07:00"
+        }
+      ],
+      "SelfId": 1,
+      "ParentId": 0,
+      "DateCreated": "2017-07-20T00:20:43.3988985-07:00",
+      "DateModified": "2017-07-20T00:20:43.4044125-07:00"
+    },
+    {
+      "MNum": 2,
+      "MTitle": "Brand Engagement",
+      "MDesc": "The Pre-Ad section",
+      "MShowDesc": false,
+      "Children": [
+        {
+          "SLetter": "D",
+          "STitle": "5-pt scales",
+          "SDesc": "These questions have 5-pt scales.",
+          "SShowDesc": true,
+          "Children": [
+            {
+              "QNum": "D10",
+              "QTitle": "Scale 1",
+              "BaseLabel": "All respondents",
+              "BaseDef": "",
+              "Comments": "",
+              "ProgInst": "Horizontal Scale. Show column codes. Single code per column statement.",
+              "ProgFlagsNonADC": [
+                "ShowColumnCodes",
+                "SingleCodePerColumn"
+              ],
+              "ProgFlagADC": "None",
+              "RFlag": "NextQuestion",
+              "RInst": "Next question",
+              "QTypeInt": "HorizontalScale",
+              "QType": "Horizontal Scale.",
+              "QText": "Rate how you're feeling right now.",
+              "RespInst": "Select one below",
+              "Children": [
+                {
+                  "RCode": 1,
+                  "RText": "Terrible! [ANCHOR LEFT]",
+                  "RFlags": [
+                    "AnchorLeft"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 4,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 5,
+                  "RText": "Meh! [ANCHOR IN CENTER]",
+                  "RFlags": [
+                    "AnchorCenter"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 4,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 10,
+                  "RText": "High on life! [ANCHOR RIGHT]",
+                  "RFlags": [
+                    "AnchorRight"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 4,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                }
+              ],
+              "SelfId": 4,
+              "ParentId": 4,
+              "DateCreated": "2017-07-20T00:20:43.4164453-07:00",
+              "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+            },
+            {
+              "QNum": "D20",
+              "QTitle": "Scale 2",
+              "BaseLabel": "All respondents",
+              "BaseDef": "",
+              "Comments": "",
+              "ProgInst": "Single code. Radio buttons. Show row codes. Flag straightliner respondents.",
+              "ProgFlagsNonADC": [
+                "FlagStraightLiner",
+                "ShowRowCodes"
+              ],
+              "ProgFlagADC": "None",
+              "RFlag": "NextQuestion",
+              "RInst": "Next question",
+              "QTypeInt": "SingleCode",
+              "QType": "Single code. Radio buttons.",
+              "QText": "What? I didn't hear you!",
+              "RespInst": "Select one below.",
+              "Children": [
+                {
+                  "RCode": 1,
+                  "RText": "Ugh... [ANCHOR ON TOP]",
+                  "RFlags": [
+                    "AnchorTop"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 5,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 2,
+                  "RText": "",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 5,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 3,
+                  "RText": "Hmmm. [ANCHOR IN CENTER]",
+                  "RFlags": [
+                    "AnchorCenter"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 5,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 4,
+                  "RText": "",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 5,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 5,
+                  "RText": "Woo! [ANCHOR ON BOTTOM]",
+                  "RFlags": [
+                    "AnchorBottom"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 5,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                }
+              ],
+              "SelfId": 5,
+              "ParentId": 4,
+              "DateCreated": "2017-07-20T00:20:43.4164453-07:00",
+              "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+            },
+            {
+              "QNum": "D30",
+              "QTitle": "Multi code",
+              "BaseLabel": "All respondents",
+              "BaseDef": "",
+              "Comments": "",
+              "ProgInst": "Multi code. Checkboxes. Randomize rows. Hide row codes. Allow selection up to 3 MAX. Flag straightliner respondents.",
+              "ProgFlagsNonADC": [
+                "RandomizeRows",
+                "HideRowCodes",
+                "MaxNumSelected",
+                "FlagStraightLiner"
+              ],
+              "ProgFlagADC": "None",
+              "RFlag": "NextQuestion",
+              "RInst": "Next question",
+              "QTypeInt": "MultiCode",
+              "QType": "Multi code. Checkboxes.",
+              "QText": "Piss off!!",
+              "RespInst": "Select all that apply. 3 at most!",
+              "Children": [
+                {
+                  "RCode": 1,
+                  "RText": "Captain Crunch",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 2,
+                  "RText": "Honey Nut Cheerios [TERM IF NOT SELECTED]",
+                  "RFlags": [
+                    "TermNotSelected"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 3,
+                  "RText": "Frosted Flakes",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 4,
+                  "RText": "Fruit Loops",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 5,
+                  "RText": "Cinnamon Toast Crunch [TERM IF SELECTED]",
+                  "RFlags": [
+                    "TermSelected"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 6,
+                  "RText": "Cookie Crisp",
+                  "RFlags": [],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 96,
+                  "RText": "All of the above [MUTUALLY EXCLUSIVE]",
+                  "RFlags": [
+                    "All",
+                    "MutuallyExclusive",
+                    "Test"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 99,
+                  "RText": "None of the above [TERM IF SELECTED] [MUTUALLY EXCLUSIVE]",
+                  "RFlags": [
+                    "None",
+                    "MutuallyExclusive",
+                    "TermSelected"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                },
+                {
+                  "RCode": 98,
+                  "RText": "Other (please specify)",
+                  "RFlags": [
+                    "OtherSpec"
+                  ],
+                  "SelfId": 0,
+                  "ParentId": 6,
+                  "DateCreated": "2017-07-20T00:20:43.4289782-07:00",
+                  "DateModified": "2017-07-20T00:20:43.4289782-07:00"
+                }
+              ],
+              "SelfId": 6,
+              "ParentId": 4,
+              "DateCreated": "2017-07-20T00:20:43.4164453-07:00",
+              "DateModified": "2017-07-20T00:20:43.4294789-07:00"
+            }
+          ],
+          "SelfId": 4,
+          "ParentId": 2,
+          "DateCreated": "2017-07-20T00:20:43.403911-07:00",
+          "DateModified": "2017-07-20T00:20:43.4194527-07:00"
+        },
+        {
+          "SLetter": "E",
+          "STitle": "Checkboxes",
+          "SDesc": "These questions are multi-select.",
+          "SShowDesc": true,
+          "Children": [],
+          "SelfId": 5,
+          "ParentId": 2,
+          "DateCreated": "2017-07-20T00:20:43.403911-07:00",
+          "DateModified": "2017-07-20T00:20:43.403911-07:00"
+        }
+      ],
+      "SelfId": 2,
+      "ParentId": 0,
+      "DateCreated": "2017-07-20T00:20:43.4029405-07:00",
+      "DateModified": "2017-07-20T00:20:43.4049137-07:00"
+    }
+  ],
+  "SelfId": 0,
+  "ParentId": 0,
+  "DateCreated": "2017-07-20T00:20:43.3898785-07:00",
+  "DateModified": "2017-07-20T00:20:43.4029405-07:00"
+}
