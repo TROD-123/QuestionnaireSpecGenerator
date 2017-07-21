@@ -37,23 +37,8 @@ namespace QuestionnaireSpecGenerator
             //    serializer.Serialize(file, _data);
             //}
 
-            // Questionnaire qre = JsonHandler.DeserializeJsonFromFile(@".\..\..\json_qreTest.json");
+            Tester.TestCreateQreSerializeToJsonFile();
 
-            //Tester.TestModifyQreExistingObjectsIndirectly(qre);
-            //Tester.TestRandomIntGenerator(qre);
-            //Tester.TestGetObjectById(qre);
-            //Tester.TestConsoleErrorMessageGeneration();
-
-            DataContainer container = Tester.TestCreateQreNoJson();
-
-            //ExcelBuilder builder = new ExcelBuilder(container);
-            //builder.Generate();
-
-            string json = JsonHandler.SerializeQuestionnaireIntoJson(container.GetQre());
-            string path = @".\..\..\test.json";
-
-            File.WriteAllText(path, json);
-            
         }
     }
 }

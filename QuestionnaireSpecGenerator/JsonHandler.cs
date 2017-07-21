@@ -13,7 +13,7 @@ namespace QuestionnaireSpecGenerator
     /// Handles the deserialization and serialization of a <see cref="Questionnaire"/> object and its
     /// children and components.
     /// </summary>
-    class JsonHandler
+    public class JsonHandler
     {
         public static Questionnaire DeserializeJsonFromFile(string filepath)
         {
@@ -34,20 +34,29 @@ namespace QuestionnaireSpecGenerator
             return qre;
         }
 
-        public static string SerializeQuestionnaireIntoJson(Questionnaire qre)
+        /// <summary>
+        /// Serializes the questionnaire into json.
+        /// </summary>
+        /// <param name="qre">The qre.</param>
+        /// <returns></returns>
+        private static string SerializeQuestionnaireIntoJson(Questionnaire qre)
         {
             JsonSerializerSettings serializer = new JsonSerializerSettings();  
             // Store enum strings instead of ints
             serializer.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
 
-            string jsonSerialized = JsonConvert.SerializeObject(qre, Formatting.Indented, serializer);
-
-            return jsonSerialized;
+            return JsonConvert.SerializeObject(qre, Formatting.Indented, serializer);
         }
 
-        public static void SerializeJsonIntoFile(string filepath)
+        /// <summary>
+        /// Serializes the questionnaire into a json file.
+        /// </summary>
+        /// <param name="qre">The qre.</param>
+        /// <param name="path">The path.</param>
+        public static void SerializeQuestionnaireIntoJsonFile(Questionnaire qre, string path)
         {
-
+            string json = SerializeQuestionnaireIntoJson(qre);
+            File.WriteAllText(path, json);
         }
     }
 }

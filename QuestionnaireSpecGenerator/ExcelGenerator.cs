@@ -476,7 +476,7 @@ namespace QuestionnaireSpecGenerator
                 q.Comments,
                 q.ProgInst,
                 q.RInst,
-                q.QType,
+                q.QTypeString,
                 q.QText,
                 q.RespInst
             };

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,7 @@ namespace QuestionnaireSpecGenerator
     ///  This class represents a single question, containing its attributes as well as its list
     ///  of possible responses.
     /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptOut)]
     public class QuestionBlock : QuestionnaireObject<Response>
     {
         #region outward expressions
@@ -57,6 +60,27 @@ namespace QuestionnaireSpecGenerator
         public string Comments { get; set; } // optional
 
         /// <summary>
+        /// The list of programming flags for Non ADC questions. This list generates the <see cref="ProgInst"/> string.
+        /// <para>
+        /// Note: If this question is ADC, this must be set to <c>null</c>. At least one of <see cref="ProgFlag.NonADC"/> or
+        /// <see cref="ProgFlag.ADC"/> must not be <c>null.</c>
+        /// </para>
+        /// </summary>
+        [JsonIgnore]
+        public List<ProgFlag.NonADC> ProgFlagsNonADC { get; set; }
+
+        public List<Tuple<ProgFlag.NonADC, int, int, string>> ProgFlagsNonADCWithFields { get; set; }
+
+        /// <summary>
+        /// The list of programming flags for ADC questions. This list generates the <see cref="ProgInst"/> string.
+        /// <para>
+        /// Note: If this question is not ADC, this must be set to <see cref="ProgFlag.ADC.None"/>. 
+        /// At least one of <see cref="ProgFlag.NonADC"/> or <see cref="ProgFlag.ADC"/> must not be <c>null.</c>
+        /// </para>
+        /// </summary>
+        public ProgFlag.ADC ProgFlagADC { get; set; }
+
+        /// <summary>
         /// This describes how the question should be shown to the respondent, including:
         /// <list type="bullet">
         ///     <item><description>How statements should be displayed</description></item>
@@ -71,25 +95,14 @@ namespace QuestionnaireSpecGenerator
         /// but can also be user-defined.
         /// </para>
         /// </summary>
+        [JsonIgnore]
         public string ProgInst { get; set; }
 
         /// <summary>
-        /// The list of programming flags for Non ADC questions. This list generates the <see cref="ProgInst"/> string.
-        /// <para>
-        /// Note: If this question is ADC, this must be set to <c>null</c>. At least one of <see cref="ProgFlag.NonADC"/> or
-        /// <see cref="ProgFlag.ADC"/> must not be <c>null.</c>
-        /// </para>
+        /// The user-defined component of <see cref="ProgInst"/>. This string does not include the auto-generated
+        /// component from <see cref="ProgFlagsNonADC"/> or <see cref="ProgFlagsADC"/>
         /// </summary>
-        public List<ProgFlag.NonADC> ProgFlagsNonADC { get; set; }
-
-        /// <summary>
-        /// The list of programming flags for ADC questions. This list generates the <see cref="ProgInst"/> string.
-        /// <para>
-        /// Note: If this question is not ADC, this must be set to <see cref="ProgFlag.ADC.None"/>. 
-        /// At least one of <see cref="ProgFlag.NonADC"/> or <see cref="ProgFlag.ADC"/> must not be <c>null.</c>
-        /// </para>
-        /// </summary>
-        public ProgFlag.ADC ProgFlagADC { get; set; }
+        public string ProgInst_User { get; set; }
 
         /// <summary>
         /// The routing flag used to generate the <see cref="RInst"/> string.
@@ -100,10 +113,18 @@ namespace QuestionnaireSpecGenerator
         /// Describes which question or actions should follow after the current question. This is typically chosen auto-generated, 
         /// but can also be user-defined.
         /// </summary>
+        [JsonIgnore]
         public string RInst { get; set; }
 
         /// <summary>
-        /// The question type flag used to generate the <see cref="QType"/> string.
+        /// The user-defined component of <see cref="RInst"/>. This string does not include the auto-generated
+        /// component from <see cref="RFlag"/>
+        /// </summary>
+        /// <value>
+        public string RInst_User { get; set; }
+
+        /// <summary>
+        /// The question type flag used to generate the <see cref="QTypeString"/> string.
         /// </summary>
         public QuestionType QTypeInt { get; set; }
 
@@ -111,7 +132,14 @@ namespace QuestionnaireSpecGenerator
         /// Details the <see cref="QuestionType"/>, which translates the <see cref="QuestionType"/>
         /// flag defined in <see cref="QTypeInt"/>. This is typically auto-generated, but can also be user-defined.
         /// </summary>
-        public string QType { get; set; }
+        [JsonIgnore]
+        public string QTypeString { get; set; }
+
+        /// <summary>
+        /// The user-defined component of <see cref="QTypeString"/>. This string does not include the auto-generated
+        /// component from <see cref="QTypeInt"/>
+        /// </summary>
+        public string QTypeString_User { get; set; }
 
         /// <summary>
         /// The question text that is shown to the respondent (e.g. "What is your gender?"). This is typically <b>user-defined</b>.
@@ -124,6 +152,8 @@ namespace QuestionnaireSpecGenerator
         /// </summary>
         public string RespInst { get; set; }
 
+        // TODO: RespInst auto-generates via QType? A RespInst_User, if non blank, to override auto-generated RespInt?
+
         #endregion
 
         #region methods
@@ -135,6 +165,41 @@ namespace QuestionnaireSpecGenerator
         private QuestionBlock()
         {
             // NOTE: Beware to NOT call UpdateDate() when merely DESERIALIZING.
+        }
+
+        /// <summary>
+        /// Sets the automatic generated fields. Runs after deserialization.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        [OnDeserialized]
+        internal void SetAutoGeneratedFields(StreamingContext context)
+        {
+            // Generate or set the routing instruction string (there is no appendage here; it's one or the other)
+            if (RInst_User.Equals(LanguageStringsUS.Blank))
+            {
+                try
+                {
+                    RInst = GenerateRoutingInstructionString(RFlag);
+                }
+                catch (ArgumentOutOfRangeException e)
+                {
+                    Console.WriteLine(Toolbox.GenerateConsoleErrorMessage("QuestionBlock Constructor: Generate Routing Instruction", e));
+                }
+            }
+            else
+            {
+                RInst = RInst_User;
+            }
+
+            // Generate the question type and programming instruction strings
+            try
+            {
+                ProgInst = GenerateProgInstString(QTypeInt, QTypeString_User, ProgFlagsNonADCWithFields, ProgFlagADC, ProgInst_User);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(Toolbox.GenerateConsoleErrorMessage("QuestionBlock Constructor: Generate Programming Instruction", e));
+            }
         }
 
         // TODO: Default values of the prog flags non adc tuple should be -1 for ints and null for strings. They won't be read
@@ -152,7 +217,7 @@ namespace QuestionnaireSpecGenerator
         /// <param name="progFlagsNonADC">The list of Non-ADC programming flags. Used to set the <see cref="ProgInst"/> string.</param>
         /// <param name="progFlagADC">The ADC programming flag. Used to set the <see cref="ProgInst"/> string.</param>
         /// <param name="rFlag">The routing flag. Used to set the <see cref="RInst" /> string.</param>
-        /// <param name="qTypeInt">The question type. Used to set the <see cref="QType" /> string.</param>
+        /// <param name="qTypeInt">The question type. Used to set the <see cref="QTypeString" /> string.</param>
         /// <param name="qText">The question text.</param>
         /// <param name="respInst">The respondent instruction.</param>
         /// <param name="responses">The list of responses.</param>
@@ -166,7 +231,9 @@ namespace QuestionnaireSpecGenerator
             string baseLabel, string baseDef, string comments,
             List<Tuple<ProgFlag.NonADC, int, int, string>> progFlagsNonADC, ProgFlag.ADC progFlagADC, 
             RoutingFlag rFlag, QuestionType qTypeInt, string qText, string respInst, List<Response> responses, 
-            string customProgInst = null, string customRoutingInst = null, string customQType = null)
+            string customProgInst = LanguageStringsUS.Blank, 
+            string customRoutingInst = LanguageStringsUS.Blank, 
+            string customQType = LanguageStringsUS.Blank)
         {
             DateCreated = DateTime.Now;
 
@@ -184,8 +251,8 @@ namespace QuestionnaireSpecGenerator
             // TODO: Dynamically generate this the same way as the programming instruction string
             RespInst = respInst;
 
-            // Generate or set the routing instruction string
-            if (customRoutingInst == null)
+            // Generate or set the routing instruction string (there is no appendage here; it's one or the other)
+            if (customRoutingInst.Equals(LanguageStringsUS.Blank))
             {
                 try
                 {
@@ -199,8 +266,9 @@ namespace QuestionnaireSpecGenerator
             {
                 RInst = customRoutingInst;
             }
+            RInst_User = customRoutingInst;
 
-            // Generate the programming instruction string
+            // Generate the question type and programming instruction strings
             try
             {
                 ProgInst = GenerateProgInstString(qTypeInt, customQType, progFlagsNonADC, progFlagADC, customProgInst);
@@ -208,6 +276,7 @@ namespace QuestionnaireSpecGenerator
             {
                 Console.WriteLine(Toolbox.GenerateConsoleErrorMessage("QuestionBlock Constructor: Generate Programming Instruction", e));
             }
+            ProgInst_User = customProgInst;
 
             // Add the responses
             Children = new List<Response>();
@@ -235,11 +304,11 @@ namespace QuestionnaireSpecGenerator
             List<Tuple<ProgFlag.NonADC, int, int, string>> progFlagsNonADC, ProgFlag.ADC progFlagADC, string customProgInst)
         {
             // Generate the question type string
-            if (customQType == null)
+            if (customQType.Equals(LanguageStringsUS.Blank))
             {
                 try
                 {
-                    QType = GenerateQuestionTypeString(qTypeInt);
+                    QTypeString = GenerateQuestionTypeString(qTypeInt);
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
@@ -248,8 +317,9 @@ namespace QuestionnaireSpecGenerator
             }
             else
             {
-                QType = customQType;
+                QTypeString = customQType;
             }
+            QTypeString_User = customQType;
 
             // Generate the programming instruction appendage
             string progInstTemp = LanguageStringsUS.Blank;
@@ -262,14 +332,13 @@ namespace QuestionnaireSpecGenerator
                 else if (progFlagADC != ProgFlag.ADC.None)
                 {
                     progInstTemp = GenerateADCProgInstString(progFlagADC);
-
                 }
             }
             catch (ArgumentOutOfRangeException e)
             {
                 throw e;
             }
-            return (QType + LanguageStringsUS.Whitespace + progInstTemp).Trim();
+            return (QTypeString + LanguageStringsUS.Whitespace + progInstTemp).Trim();
         }
 
         /// <summary>
@@ -310,9 +379,9 @@ namespace QuestionnaireSpecGenerator
         /// </summary>
         /// <param name="progFlagsNonADC">A quadruple containing the list of Non-ADC programming flags along with their extra params</param>
         /// <returns></returns>
-        private string GenerateNonADCProgInstString(List<Tuple<ProgFlag.NonADC, int, int, string>> progFlagsNonADC, string custom = null)
+        private string GenerateNonADCProgInstString(List<Tuple<ProgFlag.NonADC, int, int, string>> progFlagsNonADC, string custom = LanguageStringsUS.Blank)
         {
-            string NonADCProgInstString = "";
+            string NonADCProgInstString = LanguageStringsUS.Blank;
             List<ProgFlag.NonADC> flags = progFlagsNonADC.Select(t => t.Item1).ToList();
 
             // Response sort
@@ -490,6 +559,7 @@ namespace QuestionnaireSpecGenerator
             }
 
             ProgFlagsNonADC = flags;
+            ProgFlagsNonADCWithFields = progFlagsNonADC;
             return NonADCProgInstString.Trim();           
         }
 

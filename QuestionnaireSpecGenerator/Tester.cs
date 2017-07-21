@@ -8,6 +8,15 @@ namespace QuestionnaireSpecGenerator
 {
     public class Tester
     {
+        public static void TestCreateQreSerializeToJsonFile()
+        {
+            DataContainer container = TestCreateQreNoJson();
+
+            string path = @".\..\..\test.json";
+            JsonHandler.SerializeQuestionnaireIntoJsonFile(container.GetQre(), path);
+        }
+
+
         public static void TestConsoleErrorMessageGeneration()
         {
             Console.WriteLine(Toolbox.GenerateConsoleErrorMessage("TestMethod", new Exception()));

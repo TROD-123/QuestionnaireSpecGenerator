@@ -118,7 +118,7 @@ namespace UnitTests
         [TestMethod]
         public void TestAcceptBtwnXandYValidInput()
         {
-            string expected = "Accept only values between 1 and 99.";
+            string expected = "Only accept values between 1 and 99.";
             string actual = OE.AcceptBtwnXandY(1, 99);
             Assert.AreEqual(expected, actual);
         }
